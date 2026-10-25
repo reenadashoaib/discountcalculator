@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Discount Calculator – Find the Sale Price and How Much You Save</title>
+  <meta name="description" content="Free discount calculator. Enter a price and a percent off to see the sale price, how much you save, stacked discounts and sales tax. Works with any currency.">
+  <!-- AdSense: replace ca-pub-XXXXXXXXXXXXXXXX with your publisher ID on every page -->
+  <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX">
+  <meta property="og:title" content="Discount Calculator">
+  <meta property="og:description" content="See the sale price and how much you save in seconds.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#1a2238">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Discount Calculator",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#calculator">Skip to calculator</a>
+
+  <header class="site-header">
+    <div class="inner">
+      <a class="brand" href="./"><img src="favicon.svg" alt="" width="30" height="30">Discount Calculator</a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="./" aria-current="page">Calculator</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="ad ad-top" data-ad="top-banner" data-size="728 × 90"></div>
+
+  <div class="frame">
+    <aside class="rail" aria-label="Advertisement">
+      <div class="ad" data-ad="rail-left" data-size="160 × 600"></div>
+    </aside>
+
+    <main id="main">
+      <section class="calc-intro">
+        <h1>Discount calculator</h1>
+        <p>Type the price and the discount. The sale price and your savings update as you type.</p>
+      </section>
+
+      <section class="calc" id="calculator" aria-label="Discount calculator">
+        <div class="calc-inputs">
+          <div class="modes" role="tablist" aria-label="What do you want to find?">
+            <button type="button" role="tab" id="tab-sale" aria-controls="panel-sale" aria-selected="true">Sale price</button>
+            <button type="button" role="tab" id="tab-percent" aria-controls="panel-percent" aria-selected="false" tabindex="-1">Percent off</button>
+          </div>
+
+          <!-- Mode 1: price + discount → sale price -->
+          <div role="tabpanel" id="panel-sale" aria-labelledby="tab-sale">
+            <div class="field" id="f-price">
+              <label for="price">Original price</label>
+              <div class="input-wrap">
+                <span class="affix currency-symbol" aria-hidden="true">$</span>
+                <input id="price" type="text" inputmode="decimal" autocomplete="off" placeholder="0.00" value="120">
+              </div>
+            </div>
+
+            <div class="field" id="f-discount">
+              <label for="discount">Discount</label>
+              <div class="input-wrap">
+                <input id="discount" type="text" inputmode="decimal" autocomplete="off" placeholder="0" value="25">
+                <select id="discount-type" aria-label="Discount type">
+                  <option value="percent">% off</option>
+                  <option value="amount">amount off</option>
+                </select>
+              </div>
+              <div class="chips" id="chips" aria-label="Common discounts">
+                <button type="button" data-value="10">10%</button>
+                <button type="button" data-value="15">15%</button>
+                <button type="button" data-value="20">20%</button>
+                <button type="button" data-value="25">25%</button>
+                <button type="button" data-value="30">30%</button>
+                <button type="button" data-value="40">40%</button>
+                <button type="button" data-value="50">50%</button>
+                <button type="button" data-value="70">70%</button>
+              </div>
+            </div>
+
+            <details class="extras">
+              <summary>Extra discount and sales tax</summary>
+              <div class="row-2">
+                <div class="field" id="f-extra">
+                  <label for="extra">Extra % off <span class="hint">applied after the first</span></label>
+                  <div class="input-wrap">
+                    <input id="extra" type="text" inputmode="decimal" autocomplete="off" placeholder="0">
+                    <span class="affix">%</span>
+                  </div>
+                </div>
+                <div class="field" id="f-tax">
+                  <label for="tax">Sales tax</label>
+                  <div class="input-wrap">
+                    <input id="tax" type="text" inputmode="decimal" autocomplete="off" placeholder="0">
+                    <span class="affix">%</span>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <!-- Mode 2: original + sale price → percent off -->
+          <div role="tabpanel" id="panel-percent" aria-labelledby="tab-percent" hidden>
+            <div class="field" id="f-orig">
+              <label for="orig">Original price</label>
+              <div class="input-wrap">
+                <span class="affix currency-symbol" aria-hidden="true">$</span>
+                <input id="orig" type="text" inputmode="decimal" autocomplete="off" placeholder="0.00" value="80">
+              </div>
+            </div>
+            <div class="field" id="f-sale">
+              <label for="sale">Sale price</label>
+              <div class="input-wrap">
+                <span class="affix currency-symbol" aria-hidden="true">$</span>
+                <input id="sale" type="text" inputmode="decimal" autocomplete="off" placeholder="0.00" value="56">
+              </div>
+            </div>
+          </div>
+
+          <p class="currency">
+            <label for="currency">Currency</label>
+            <select id="currency">
+              <option value="USD">US dollar ($)</option>
+              <option value="EUR">Euro (€)</option>
+              <option value="GBP">British pound (£)</option>
+              <option value="INR">Indian rupee (₹)</option>
+              <option value="PKR">Pakistani rupee (Rs)</option>
+              <option value="CAD">Canadian dollar (CA$)</option>
+              <option value="AUD">Australian dollar (A$)</option>
+              <option value="AED">UAE dirham (AED)</option>
+              <option value="SAR">Saudi riyal (SAR)</option>
+              <option value="JPY">Japanese yen (¥)</option>
+            </select>
+          </p>
+        </div>
+
+        <div class="tag-wrap">
+          <div class="tag" id="tag" aria-live="polite">
+            <p class="tag-label" id="tag-label">You pay</p>
+            <p class="tag-price" id="tag-price">–</p>
+            <p class="tag-was" id="tag-was"></p>
+            <p class="tag-save" id="tag-save" hidden></p>
+            <ul class="tag-lines" id="tag-lines"></ul>
+          </div>
+          <div class="tag-actions">
+            <button type="button" class="btn" id="copy">Copy result</button>
+            <span id="copy-status" role="status"></span>
+          </div>
+        </div>
+      </section>
+
+      <div class="ad-tiles">
+        <div class="ad" data-ad="tile-1" data-size="300 × 250"></div>
+        <div class="ad" data-ad="tile-2" data-size="300 × 250"></div>
+        <div class="ad" data-ad="tile-3" data-size="300 × 250"></div>
+      </div>
+
+      <section class="content">
+        <h2>How to work out a discount</h2>
+        <p>A discount is a share of the price taken off. To find the sale price, turn the percent into a decimal and subtract it from 1, then multiply by the original price.</p>
+        <p class="formula">Sale price = price × (1 − discount ÷ 100)</p>
+        <p>For a $120 jacket at 25% off: 120 × 0.75 = $90. You save $30.</p>
+        <p>To find how much you save, multiply the price by the discount as a decimal: 120 × 0.25 = $30.</p>
+
+        <h3>Find the percent off from two prices</h3>
+        <p>If a shop shows only the old and new price, divide the amount saved by the original price.</p>
+        <p class="formula">Percent off = (original − sale) ÷ original × 100</p>
+        <p>An $80 pair of shoes on sale for $56 is (80 − 56) ÷ 80 = 0.30, so 30% off.</p>
+      </section>
+
+      <div class="ad ad-inline" data-ad="in-content" data-size="336 × 280"></div>
+
+      <section class="content">
+        <h2>Stacked discounts are not added together</h2>
+        <p>"30% off, then an extra 20% at checkout" is not 50% off. The second discount comes off the already reduced price.</p>
+        <p>On $100: 30% off leaves $70. Another 20% off $70 is $14, so you pay $56. That is 44% off in total, not 50%.</p>
+        <p>Use the <strong>Extra % off</strong> field above to check any stacked deal.</p>
+
+        <h2>Common discounts on $100</h2>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th scope="col">Discount</th><th scope="col">You save</th><th scope="col">You pay</th></tr>
+            </thead>
+            <tbody id="ref-table"></tbody>
+          </table>
+        </div>
+
+        <h2>Sales tax and discounts</h2>
+        <p>In most places tax is charged on the discounted price, not the original. The calculator applies tax last, after every discount, which matches how shops ring up a sale.</p>
+      </section>
+
+      <div class="ad-tiles">
+        <div class="ad" data-ad="tile-4" data-size="300 × 250"></div>
+        <div class="ad" data-ad="tile-5" data-size="300 × 250"></div>
+        <div class="ad" data-ad="tile-6" data-size="300 × 250"></div>
+      </div>
+
+      <section class="content faq">
+        <h2>Questions</h2>
+        <details>
+          <summary>How do I calculate 20% off?</summary>
+          <p>Multiply the price by 0.8. A $45 item at 20% off costs 45 × 0.8 = $36.</p>
+        </details>
+        <details>
+          <summary>Is 40% off then 10% off the same as 50% off?</summary>
+          <p>No. You pay 0.6 × 0.9 = 0.54 of the price, which is 46% off.</p>
+        </details>
+        <details>
+          <summary>How do I find the original price from a sale price?</summary>
+          <p>Divide the sale price by (1 − discount ÷ 100). If $63 is the price after 30% off, the original was 63 ÷ 0.7 = $90.</p>
+        </details>
+        <details>
+          <summary>Does the calculator store what I type?</summary>
+          <p>No. Everything is worked out in your browser. Only your currency choice is remembered on your device.</p>
+        </details>
+      </section>
+    </main>
+
+    <aside class="rail" aria-label="Advertisement">
+      <div class="ad" data-ad="rail-right" data-size="160 × 600"></div>
+    </aside>
+  </div>
+
+  <div class="ad ad-bottom" data-ad="bottom-banner" data-size="728 × 90"></div>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <span>© <span id="year">2026</span> Discount Calculator</span>
+      <nav aria-label="Footer">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy policy</a>
+        <a href="terms.html">Terms of use</a>
+      </nav>
+    </div>
+  </footer>
+
+  <aside class="video-ad" id="video-ad" aria-label="Advertisement" hidden>
+    <span class="ad-label">Advertisement</span>
+    <button type="button" class="close-ad" id="video-ad-close" aria-label="Close video ad">×</button>
+    <div class="ad-box" id="video-ad-box"></div>
+  </aside>
+
+  <dialog class="popup-ad" id="popup-ad" aria-label="Advertisement">
+    <div class="popup-inner">
+      <span class="ad-label">Advertisement</span>
+      <div class="ad-box" id="popup-ad-box"></div>
+      <button type="button" class="popup-close" id="popup-ad-close">Close ad and continue</button>
+    </div>
+  </dialog>
+
+  <script src="js/calculator.js"></script>
+  <script src="js/ads.js"></script>
+</body>
+</html>
