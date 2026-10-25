@@ -13,11 +13,20 @@ Open http://localhost:8000.
 
 ## Deploy to Cloudflare
 
-1. In the Cloudflare dashboard go to **Workers & Pages → Create → Pages → Connect to Git** and pick this repository.
-2. Leave **Build command** empty and set **Build output directory** to `public`.
-3. Deploy, then add your domain under **Custom domains**.
+The site is deployed as a Cloudflare Worker that serves the `public/` folder (see `wrangler.jsonc`). Live at:
 
-Every push to the production branch redeploys the site. `public/_headers` sets security and cache headers. `public/404.html` is shown for missing pages.
+https://discountcalculator.reenadashoaib.workers.dev
+
+To deploy a change:
+
+```bash
+npx wrangler@4 login     # once, or set CLOUDFLARE_API_TOKEN
+npx wrangler@4 deploy
+```
+
+`public/_headers` sets security and cache headers. `public/404.html` is shown for missing pages. `public/.assetsignore` lists files that are not uploaded.
+
+To use your own domain, add it to Cloudflare, then in **Workers & Pages → discountcalculator → Settings → Domains & Routes** add it as a custom domain.
 
 ## Before you apply for AdSense
 
