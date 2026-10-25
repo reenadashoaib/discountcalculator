@@ -24,6 +24,15 @@
   let currency = store.get("dc-currency") || "USD";
   let mode = "sale";
   let lastResultText = "";
+  let announceTimer;
+
+  // Screen readers hear the result once typing pauses, not on every key.
+  function announce(text) {
+    clearTimeout(announceTimer);
+    announceTimer = setTimeout(() => {
+      $("sr-result").textContent = text;
+    }, 700);
+  }
 
   // "1,299.50" or "1 299.50" → 1299.5; empty → null; junk → NaN
   function parse(value) {
@@ -64,6 +73,7 @@
       field.classList.remove("has-error");
       if (el) el.remove();
       input.removeAttribute("aria-invalid");
+      input.removeAttribute("aria-describedby");
       return;
     }
     if (!el) {
@@ -86,6 +96,7 @@
     $("tag-save").hidden = true;
     $("tag-lines").innerHTML = "";
     lastResultText = "";
+    announce(message);
   }
 
   function render({ label, big, was, save, lines, text }) {
@@ -101,6 +112,7 @@
       .map(([k, v]) => `<li><span>${k}</span><span>${v}</span></li>`)
       .join("");
     lastResultText = text;
+    announce(text);
     if (changed) {
       tag.classList.remove("updated");
       void tag.offsetWidth; // restart the swing animation

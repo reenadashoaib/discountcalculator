@@ -41,24 +41,20 @@
     </div>
   </header>
 
-  <div class="ad ad-top" data-ad="top-banner" data-size="728 × 90"></div>
+  <aside class="ad ad-top" aria-label="Advertisement, top" data-ad="top-banner" data-size="728 × 90"></aside>
 
   <div class="frame">
-    <aside class="rail" aria-label="Advertisement">
+    <aside class="rail" aria-label="Advertisement, left">
       <div class="ad" data-ad="rail-left" data-size="160 × 600"></div>
     </aside>
 
     <main id="main">
-      <section class="calc-intro">
-        <h1>Discount calculator</h1>
-        <p>Type the price and the discount. The sale price and your savings update as you type.</p>
-      </section>
-
-      <section class="calc" id="calculator" aria-label="Discount calculator">
+      <section class="calc" id="calculator" aria-labelledby="calc-title">
+        <h1 id="calc-title">Discount calculator</h1>
         <div class="calc-inputs">
-          <div class="modes" role="tablist" aria-label="What do you want to find?">
-            <button type="button" role="tab" id="tab-sale" aria-controls="panel-sale" aria-selected="true">Sale price</button>
-            <button type="button" role="tab" id="tab-percent" aria-controls="panel-percent" aria-selected="false" tabindex="-1">Percent off</button>
+          <div class="modes" role="tablist" aria-label="What do you know?">
+            <button type="button" role="tab" id="tab-sale" aria-controls="panel-sale" aria-selected="true">I know the discount</button>
+            <button type="button" role="tab" id="tab-percent" aria-controls="panel-percent" aria-selected="false" tabindex="-1">I know both prices</button>
           </div>
 
           <!-- Mode 1: price + discount → sale price -->
@@ -149,7 +145,7 @@
         </div>
 
         <div class="tag-wrap">
-          <div class="tag" id="tag" aria-live="polite">
+          <div class="tag" id="tag">
             <p class="tag-label" id="tag-label">You pay</p>
             <p class="tag-price" id="tag-price">–</p>
             <p class="tag-was" id="tag-was"></p>
@@ -160,6 +156,7 @@
             <button type="button" class="btn" id="copy">Copy result</button>
             <span id="copy-status" role="status"></span>
           </div>
+          <p class="visually-hidden" id="sr-result" aria-live="polite"></p>
         </div>
       </section>
 
@@ -231,12 +228,12 @@
       </section>
     </main>
 
-    <aside class="rail" aria-label="Advertisement">
+    <aside class="rail" aria-label="Advertisement, right">
       <div class="ad" data-ad="rail-right" data-size="160 × 600"></div>
     </aside>
   </div>
 
-  <div class="ad ad-bottom" data-ad="bottom-banner" data-size="728 × 90"></div>
+  <aside class="ad ad-bottom" aria-label="Advertisement, bottom" data-ad="bottom-banner" data-size="728 × 90"></aside>
 
   <footer class="site-footer">
     <div class="inner">
