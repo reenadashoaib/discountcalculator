@@ -396,9 +396,11 @@ main {
 .currency {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: var(--step--1);
-  color: var(--ink-soft);
+  gap: 10px;
+}
+
+.currency label {
+  font-weight: 700;
 }
 
 .currency select {
